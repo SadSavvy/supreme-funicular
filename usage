@@ -1,0 +1,19 @@
+usage 
+luanch the tool 
+./j5wifi.sh
+Select a menu option (1–21 or h for hints).
+
+Follow the prompts for target BSSID, channel, capture file, or wordlist as required.
+
+Long-running tasks automatically open a new terminal to avoid blocking the menu.
+
+Example: Capture a handshake and crack it:
+
+# Step 1: Set J5 to monitor
+./j5wifi.sh
+# Step 2: Select "Automatic handshake capture"
+# Step 3: Enter BSSID, channel, and capture prefix
+# Step 4: Select "Background handshake cracking"
+# Step 5: Provide capture file and wordlist
+
+
