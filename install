@@ -1,0 +1,11 @@
+Installation
+
+git clone https://github.com/yourusername/j5wifi.git
+cd j5wifi
+chmod +x j5wifi.sh
+sudo ln -sf ~/j5wifi/j5wifi.sh /usr/local/bin/j5wifi
+./j5wifi.sh
+# or globally
+j5wifi
+
+Clone the repository:
