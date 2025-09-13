@@ -51,3 +51,64 @@ Install dependencies:
 ```bash
 sudo apt update
 sudo apt install -y aircrack-ng xterm macchanger hashcat reaver bully airbase-ng tcpdump
+
+Adapter Compatibility Notes
+
+The J5 Wi-Fi Toolset is specifically optimized for the J5 RT5572 USB wireless adapter, but its underlying Bash script is designed to be adaptable to other Wi-Fi adapters provided they meet certain requirements.
+
+Requirements for Compatibility
+
+Chipset Support
+
+The adapter must use a chipset supported by Linux for monitor mode and packet injection.
+
+Example supported chipsets:
+
+Ralink/MediaTek: RT5572, RT3070, RT5370
+
+Atheros: AR9271, AR7010
+
+Realtek: RTL8812AU, RTL8187
+
+Check compatibility using:
+
+  iw list
+aireplay-ng --test <interface>
+Driver Support
+
+The adapter must have a Linux driver that supports monitor mode (iw dev <iface> set type monitor) and injection (aireplay-ng --test).
+
+For some chipsets, you may need to install drivers manually:
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+
+Example: RT5572 uses rt2800usb, while RTL8812AU may require rtl8812au-dkms.
+
+Interface Identification
+
+The toolset defaults to the J5 adapter as wlan0.
+
+If using a different adapter, set the variable at the top of j5wifi.sh:
+J5_IF="wlan0"   # Replace with your compatible adapter
+CHIPSET="rt5572"  # Replace with your adapter's chipset
+
+Testing Before Use
+
+Always confirm that the adapter can perform packet injection and monitor mode before running attacks:
+sudo ip link set wlanX down
+sudo iw dev wlanX set type monitor
+sudo ip link set wlanX up
+sudo aireplay-ng --test wlanX
+
+If the adapter passes the test, the toolset functions (scanning, deauth, capture, etc.) should work seamlessly.
+
+Notes
+
+Some adapters may require additional firmware packages; check dmesg for errors when plugging in a new adapter.
+
+Multi-adapter setups can be used. Only the adapter designated in J5_IF will be affected by the toolset—internal or secondary Wi-Fi remains untouched.
+
+Long-term compatibility depends on Linux kernel updates and driver support for your specific chipset.
+
+
+
+
