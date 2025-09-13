@@ -1,0 +1,7 @@
+Only use on networks you own or have permission to test.
+
+Deauthentication, rogue AP, and WPS attacks can disrupt client connectivity.
+
+J5 adapter changes to monitor mode may temporarily disrupt Wi-Fi; your internal adapter remains unaffected.
+
+Always restore the J5 adapter to managed mode after testing.
